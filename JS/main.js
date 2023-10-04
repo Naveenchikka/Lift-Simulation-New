@@ -166,17 +166,6 @@ liftSection.classList.add("liftSection");
 
   if(isLiftPresent?.isPresent)
   {
-    // liftDataStore.forEach((lift)=>{
-    //      if(lift?.liftId === Number(liftNumber) && lift?.state === 'idle')
-    //      {
-    //         moveLift(floorNumber,Number(liftNumber));
-    //         isLiftFree = false;
-    //      }
-    //      else if(lift?.liftId === Number(liftNumber) && lift?.state !== 'idle')
-    //      {
-    //         requestQueue.push({sameFloor: true,floorNumber,direction:direction,liftNumber:Number(liftNumber)});
-    //      }
-    // });
     const liftInfo = liftDataStore.find(lift => lift.liftId === Number(liftNumber));
     if(liftInfo.state === 'idle')
     {
@@ -269,16 +258,7 @@ function closeDoors(lift,leftDoor,rightDoor,liftNumber)
       lift.classList.remove("opened-door");
       leftDoor.classList.remove("closed-door");
       leftDoor.style.transition = "";
-
-    //   if(sameFloorRequestQueue.length > 0)
-    //   {
-    //     const request = sameFloorRequestQueue.shift();
-    //     moveLift(request.floorNumber, request.liftNumber);
-    //     isLiftFree = false;
-    //   }
-    //   else {
-    //     isLiftFree = true;
-    //   }
+    
       // Check if there are requests in the queue
       if (requestQueue.length > 0) {
           const nextRequest = requestQueue.shift();
