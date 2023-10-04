@@ -381,13 +381,13 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // Function to check if device mode is changed
-const checkDeviceModeChange = () => {
-  const isDeviceModeChanged = window.matchMedia("(hover: none)").matches;
+// const checkDeviceModeChange = () => {
+//   const isDeviceModeChanged = window.matchMedia("(hover: none)").matches;
 
-  if (isDeviceModeChanged && !document.activeElement.tagName.toLowerCase().match(/input|textarea|div|button/)) {
-      location.reload(); // Reload the page
-  }
-};
+//   if (isDeviceModeChanged && !document.activeElement.tagName.toLowerCase().match(/input|textarea|div|button/)) {
+//       location.reload(); // Reload the page
+//   }
+// };
 
-// Add an event listener to check for device mode changes
-window.addEventListener('resize', checkDeviceModeChange);
+// // Add an event listener to check for device mode changes
+// window.addEventListener('resize', checkDeviceModeChange);
