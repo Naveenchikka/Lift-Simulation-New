@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="CSS/main.css" />
+    <title>lift simulator</title>
+</head>
+<body>
+      <section id="form-section" class="">
+      <h1>Lift Simulator</h1>
+      <div class="container">
+         <form class="form" onsubmit="validateForm()">
+            <label for="NumberOfFloors">Enter Number of Floors:</label>
+            <input type="number" class="input-field" id="NumberOfFloors" placeholder="Max 10 floors" min="1" max="10" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required/>
+            <label for="NumberOfLifts">Enter Number of Lifts:</label>
+            <input type="number" min="1" max="10" class="input-field" id="NumberOfLifts" placeholder="Max 10 Lifts" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required/>
+            <button type="submit" class="button">Generate</button>
+         </form>
+      </div>
+     </section>
+      <script src="JS/main.js"></script>
+</body>
+</html>
