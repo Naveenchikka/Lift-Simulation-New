@@ -384,7 +384,7 @@ window.addEventListener('DOMContentLoaded', () => {
 const checkDeviceModeChange = () => {
   const isDeviceModeChanged = window.matchMedia("(hover: none)").matches;
 
-  if (isDeviceModeChanged && !document.activeElement.tagName.toLowerCase().match(/input|textarea/)) {
+  if (isDeviceModeChanged && !document.activeElement.tagName.toLowerCase().match(/input|textarea/div|button/)) {
       location.reload(); // Reload the page
   }
 };
