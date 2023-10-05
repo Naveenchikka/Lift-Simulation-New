@@ -9,7 +9,6 @@ let downButton;
 
 let liftDataStore = [];
 let requestQueue = [];
-let sameFloorRequestQueue = [];
 let isLiftFree = true;
 
 function clearInputValues() {
@@ -169,7 +168,8 @@ liftSection.classList.add("liftSection");
         isLiftFree = false;
       }
     } else {
-      requestQueue.push({floorNumber, direction: direction,liftNumber: Number(liftNumber)});
+      if(!(direction.length > 5))
+             requestQueue.push({floorNumber, direction: direction});
     }
   }
 });
@@ -247,10 +247,10 @@ function openDoors(lift, leftDoor, rightDoor)
 
 function closeDoors(lift,leftDoor,rightDoor,liftNumber) 
 {
-  leftDoor.style.transform = `translateX(0)`;
   leftDoor.style.transition = `transform 2.5s ease-in-out`;
-  rightDoor.style.transform = `translateX(0)`;
+  leftDoor.style.transform = `translateX(0)`;
   rightDoor.style.transition = `transform 2.5s ease-in-out`;
+  rightDoor.style.transform = `translateX(0)`;
   
   // Add transitionend listener for closing doors
   leftDoor.addEventListener("transitionend", () => {
@@ -264,11 +264,8 @@ function closeDoors(lift,leftDoor,rightDoor,liftNumber)
           const nextRequest = requestQueue.shift();
           if (nextRequest?.floorNumber) {
               const nearestIdleLift = findNearestIdleLift(nextRequest.floorNumber);
-              let isLiftPresent = {isPresent: false,lifId: null};
-              if(requestQueue[0]?.floorNumber === nextRequest?.floorNumber){
               const liftHeight = -4.5 * nextRequest?.floorNumber + 'rem';
-              isLiftPresent = isLiftOnFloor(liftHeight);
-              }
+              const isLiftPresent = isLiftOnFloor(liftHeight);
               if(nearestIdleLift && !isLiftPresent?.isPresent) {
                   moveLift(nextRequest.floorNumber, nearestIdleLift);
                   isLiftFree = false;
