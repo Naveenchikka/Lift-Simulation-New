@@ -233,6 +233,7 @@ async function moveLift(destinationFloor, liftNumber)
 
   await new Promise(resolve => setTimeout(resolve, 2500));
   closeDoors(lift,leftDoor, rightDoor,liftNumber);
+  await new Promise(resolve => setTimeout(resolve, 2500));
   // liftDataStore[liftNumber-1].state = "idle";
 }
 
