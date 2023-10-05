@@ -232,6 +232,12 @@ async function moveLift(destinationFloor, liftNumber)
   openDoors(lift, leftDoor, rightDoor);
 
   await new Promise(resolve => setTimeout(resolve, 2500));
+  
+  leftDoor.style.transition = `transform 2.5s ease-in-out`;
+  leftDoor.style.transform = `translateX(0)`;
+  rightDoor.style.transition = `transform 2.5s ease-in-out`;
+  rightDoor.style.transform = `translateX(0)`;
+  
   closeDoors(lift,leftDoor, rightDoor,liftNumber);
   await new Promise(resolve => setTimeout(resolve, 2500));
   // liftDataStore[liftNumber-1].state = "idle";
@@ -248,10 +254,6 @@ function openDoors(lift, leftDoor, rightDoor)
 
 function closeDoors(lift,leftDoor,rightDoor,liftNumber) 
 {
-  leftDoor.style.transition = `transform 2.5s ease-in-out`;
-  leftDoor.style.transform = `translateX(0)`;
-  rightDoor.style.transition = `transform 2.5s ease-in-out`;
-  rightDoor.style.transform = `translateX(0)`;
   
   // Add transitionend listener for closing doors
   leftDoor.addEventListener("transitionend", () => {
