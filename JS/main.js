@@ -142,20 +142,6 @@ liftSection.classList.add("liftSection");
     clearInputValues();
    });
 
-  function isLiftOnFloor(liftHeight) {
-    // Get all the lifts
-    const lifts = document.querySelectorAll('.lift');
-    for (const lift of lifts) 
-    {
-        if (lift.style.transform === `translateY(${liftHeight})`) {
-          const liftId = lift.id;
-          return { isPresent: true, liftId: liftId };
-        }
-    }
-    return { isPresent: false, liftId: null };
-  }
-
- 
  liftSection.addEventListener("click", (event) => {
     const floorNumber = event.target.dataset.floor;
     const button = event.target;
@@ -188,6 +174,19 @@ liftSection.classList.add("liftSection");
   }
 });
 
+}
+
+function isLiftOnFloor(liftHeight) {
+    // Get all the lifts
+    const lifts = document.querySelectorAll('.lift');
+    for (const lift of lifts) 
+    {
+        if (lift.style.transform === `translateY(${liftHeight})`) {
+          const liftId = lift.id;
+          return { isPresent: true, liftId: liftId };
+        }
+    }
+    return { isPresent: false, liftId: null };
 }
 
 async function moveLift(destinationFloor, liftNumber)
@@ -265,7 +264,12 @@ function closeDoors(lift,leftDoor,rightDoor,liftNumber)
           const nextRequest = requestQueue.shift();
           if (nextRequest?.floorNumber) {
               const nearestIdleLift = findNearestIdleLift(nextRequest.floorNumber);
-              if(nearestIdleLift) {
+              let isLiftPresent = {isPresent: false,lifId: null};
+              if(requestQueue[0]?.floorNumber === nextRequest?.floorNumber){
+              const liftHeight = -4.5 * nextRequest?.floorNumber + 'rem';
+              isLiftPresent = isLiftOnFloor(liftHeight);
+              }
+              if(nearestIdleLift && !isLiftPresent?.isPresent) {
                   moveLift(nextRequest.floorNumber, nearestIdleLift);
                   isLiftFree = false;
               }
