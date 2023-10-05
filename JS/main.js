@@ -139,6 +139,7 @@ liftSection.classList.add("liftSection");
     requestQueue = [];
     noOfFloors = 0;
     noOfLifts = 0;
+    clearInputValues();
    });
 
   function isLiftOnFloor(liftHeight) {
